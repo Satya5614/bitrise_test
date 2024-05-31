@@ -13,7 +13,9 @@ workflows:
     before_run:
       - setup
     steps:
-      - cocoapods-install: {}
+      - restore-cocoapods-cache@1: {}
+      - cocoapods-install@2: {}
+      - save-cocoapods-cache@1: {}
       # - manage-ios-code-signing@1:
       #     inputs:
       #       - distribution_method: app-store
