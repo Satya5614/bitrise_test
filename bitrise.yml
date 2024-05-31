@@ -16,11 +16,6 @@ workflows:
       - restore-cocoapods-cache@1: {}
       - cocoapods-install@2: {}
       - save-cocoapods-cache@1: {}
-      # - manage-ios-code-signing@1:
-      #     inputs:
-      #       - distribution_method: app-store
-      #       - scheme: test_pos
-      #       - project_path: '$BITRISE_SOURCE_DIR/ios/test_pos.xcworkspace'
       - xcode-archive:
           inputs:
             - scheme: test_pos
