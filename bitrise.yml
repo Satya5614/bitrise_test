@@ -14,15 +14,15 @@ workflows:
       - setup
     steps:
       - cocoapods-install: {}
-      - manage-ios-code-signing@1:
-          inputs:
-            - distribution_method: app-store
-            - scheme: test_pos
-            - project_path: '$BITRISE_SOURCE_DIR/ios/test_pos.xcworkspace'
+      # - manage-ios-code-signing@1:
+      #     inputs:
+      #       - distribution_method: app-store
+      #       - scheme: test_pos
+      #       - project_path: '$BITRISE_SOURCE_DIR/ios/test_pos.xcworkspace'
       - xcode-archive:
           inputs:
             - scheme: test_pos
-            - configuration: Release
+            - configuration: Debug
             - export_method: app-store
             - team_id: '$BITRISE_DEVELOPER_TEAM'
             - force_team_id: ''
@@ -30,7 +30,7 @@ workflows:
             - force_provisioning_profile_specifier: ''
             - force_provisioning_profile: ''
             - project_path: '$BITRISE_SOURCE_DIR/ios/test_pos.xcworkspace'
-            - distribution_method: app-store
+            - distribution_method: development
   ios:
     before_run:
       - iosSetup
