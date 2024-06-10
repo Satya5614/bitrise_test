@@ -16,10 +16,15 @@ workflows:
       - restore-cocoapods-cache@1: {}
       - cocoapods-install@2: {}
       - save-cocoapods-cache@1: {}
+      - manage-ios-code-signing@1:
+          inputs:
+            - distribution_method: app-store
+            - scheme: test_pos
+            - project_path: "$BITRISE_SOURCE_DIR/ios/test_pos.xcworkspace"
       - xcode-archive:
           inputs:
             - scheme: test_pos
-            - configuration: Debug
+            - configuration: Release
             - export_method: app-store
             - team_id: '$BITRISE_DEVELOPER_TEAM'
             - force_team_id: ''
@@ -27,7 +32,7 @@ workflows:
             - force_provisioning_profile_specifier: ''
             - force_provisioning_profile: ''
             - project_path: '$BITRISE_SOURCE_DIR/ios/test_pos.xcworkspace'
-            - distribution_method: development
+            - distribution_method: app-store
   ios:
     before_run:
       - iosSetup
